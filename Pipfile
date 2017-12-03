@@ -7,8 +7,9 @@ name = "pypi"
 
 [packages]
 
-django = "*"
+django = "==1.11.8"
 django-money = "*"
+requests = "*"
 
 
 [dev-packages]
