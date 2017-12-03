@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CryptoCurrency Portfolio</title>
+    </head>
+    <body>
+        {% if crypto_currencies %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Balance</th>
+                        <th>Spent</th>
+                        <th>Total</th>
+                        <th>Gain</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for crypto_currency in crypto_currencies %}
+                    <tr>
+                        <td>{{ crypto_currency.name }}</td>
+                        <td>{{ crypto_currency.price }}</td>
+                        <td>{{ crypto_currency.balance }}</td>
+                        <td>{{ crypto_currency.spent }}</td>
+                        <td>{{ crypto_currency.total }}</td>
+                        <td>{{ crypto_currency.gain }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </body>
+</html>
