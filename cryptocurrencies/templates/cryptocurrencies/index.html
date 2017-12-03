@@ -2,33 +2,133 @@
 <html>
     <head>
         <title>CryptoCurrency Portfolio</title>
+        <style type="text/css">
+            * {
+                box-sizing: border-box;
+                font-family: "Open Sans", "Lucida Grande", Verdana, Arial, sans-serif;
+            }
+
+            html,
+            body {
+                background-color: #F6F7FA;
+                height: 100vh;
+                margin: 0;
+                padding: 0;
+            }
+
+            .app {
+                display: grid;
+                grid-template-columns: 300px 1fr;
+                grid-gap: 30px;
+                height: 100vh;
+            }
+
+            .sidebar {
+                background-color: #985CFB;
+                color: #fff;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .content {
+                margin-left: 60px;
+                margin-right: 90px;
+            }
+
+            .title {
+                border-bottom: 1px solid #eee;
+                font-size: 2rem;
+                font-weight: 400;
+                margin: 1rem 0 2rem;
+                padding: 1rem 0;
+            }
+
+            .box {
+                background-color: #fff;
+            }
+
+            .table {
+                border-spacing: 0;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            .table>thead>tr>th {
+                vertical-align: bottom;
+                border-bottom: 1px solid #eee;
+                text-transform: uppercase;
+                background-color: #F6F7FA;
+                color: #888;
+                font-weight: 400;
+                font-size: 14px;
+            }
+
+            .table>thead:first-child>tr:first-child>td,
+            .table>thead:first-child>tr:first-child>th {
+                border-top: 0;
+            }
+
+            .table>tbody>tr>td,
+            .table>tbody>tr>th,
+            .table>tfoot>tr>td,
+            .table>tfoot>tr>th,
+            .table>thead>tr>td,
+            .table>thead>tr>th {
+                padding: 2rem 1.5rem;
+                line-height: 1.42857143;
+                vertical-align: top;
+                border-top: 1px solid #eee;
+            }
+
+
+            .table>thead>tr>td,
+            .table>thead>tr>th {
+                padding: 1rem 1.5rem;
+            }
+
+            th {
+                text-align: left;
+            }
+        </style>
     </head>
     <body>
-        {% if crypto_currencies %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Balance</th>
-                        <th>Spent</th>
-                        <th>Total</th>
-                        <th>Gain</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for crypto_currency in crypto_currencies %}
-                    <tr>
-                        <td>{{ crypto_currency.name }}</td>
-                        <td>{{ crypto_currency.price }}</td>
-                        <td>{{ crypto_currency.balance }}</td>
-                        <td>{{ crypto_currency.spent }}</td>
-                        <td>{{ crypto_currency.total }}</td>
-                        <td>{{ crypto_currency.gain }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
+        <div class="app">
+            <div class="sidebar">
+                CryptoCurrency Portfolio
+            </div>
+            <div class="content">
+                <h1 class="title">Accounts</h1>
+
+                <div class="box">
+                {% if crypto_currencies %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Balance</th>
+                                <th>Spent</th>
+                                <th>Total</th>
+                                <th>Gain</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for crypto_currency in crypto_currencies %}
+                            <tr>
+                                <td>{{ crypto_currency.name }}</td>
+                                <td>{{ crypto_currency.price }}</td>
+                                <td>{{ crypto_currency.balance }}</td>
+                                <td>{{ crypto_currency.spent }}</td>
+                                <td>{{ crypto_currency.total }}</td>
+                                <td>{{ crypto_currency.gain }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+        </div>
     </body>
 </html>
