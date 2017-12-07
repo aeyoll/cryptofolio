@@ -1,12 +1,18 @@
-from django.template import loader
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views import View
 from .models import CryptoCurrency
 
 
-def index(request):
-    crypto_currencies = CryptoCurrency.objects.all()
-    template = loader.get_template('cryptocurrencies/index.html')
-    context = {
-        'crypto_currencies': crypto_currencies,
-    }
-    return HttpResponse(template.render(context, request))
+@method_decorator(login_required, name='get')
+class IndexView(View):
+    template_name = 'cryptocurrencies/index.html'
+
+    def get(self, request, *args, **kwargs):
+        crypto_currencies = CryptoCurrency.objects.all()
+        context = {
+            'crypto_currencies': crypto_currencies,
+        }
+
+        return render(request, self.template_name, context)
