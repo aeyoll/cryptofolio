@@ -17,9 +17,6 @@
             }
 
             .app {
-                display: grid;
-                grid-template-columns: 300px 1fr;
-                grid-gap: 30px;
                 height: 100vh;
             }
 
@@ -31,8 +28,8 @@
             }
 
             .content {
-                margin-left: 60px;
-                margin-right: 90px;
+                margin-left: 30px;
+                margin-right: 30px;
             }
 
             .title {
@@ -45,6 +42,10 @@
 
             .box {
                 background-color: #fff;
+            }
+
+            .table-responsive {
+                overflow-x: scroll;
             }
 
             .table {
@@ -89,6 +90,17 @@
             th {
                 text-align: left;
             }
+
+            @media (min-width: 1000px) {
+                .content {
+                    margin-left: 60px;
+                    margin-right: 60px;
+                }
+
+                .table-responsive {
+                    overflow-x: auto;
+                }
+            }
         </style>
     </head>
     <body>
@@ -101,30 +113,32 @@
 
                 <div class="box">
                 {% if crypto_currencies %}
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Balance</th>
-                                <th>Spent</th>
-                                <th>Total</th>
-                                <th>Gain</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for crypto_currency in crypto_currencies %}
-                            <tr>
-                                <td>{{ crypto_currency.name }}</td>
-                                <td>{{ crypto_currency.price }}</td>
-                                <td>{{ crypto_currency.balance }}</td>
-                                <td>{{ crypto_currency.spent }}</td>
-                                <td>{{ crypto_currency.total }}</td>
-                                <td>{{ crypto_currency.gain }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Balance</th>
+                                    <th>Spent</th>
+                                    <th>Total</th>
+                                    <th>Gain</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for crypto_currency in crypto_currencies %}
+                                <tr>
+                                    <td>{{ crypto_currency.name }}</td>
+                                    <td>{{ crypto_currency.price }}</td>
+                                    <td>{{ crypto_currency.balance }}</td>
+                                    <td>{{ crypto_currency.spent }}</td>
+                                    <td>{{ crypto_currency.total }}</td>
+                                    <td>{{ crypto_currency.gain }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 {% endif %}
                 </div>
             </div>
