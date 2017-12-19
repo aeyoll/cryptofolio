@@ -14,6 +14,10 @@ class IndexView(View):
         total_spent = 0
         total_gain = 0
         total = 0
+        total_taxes = 0
+        final_gain = 0
+
+        taxes_percentage = 30
 
 
         for crypto_currency in crypto_currencies:
@@ -21,12 +25,17 @@ class IndexView(View):
             total_gain += crypto_currency.gain()
             total += crypto_currency.total()
 
+        total_taxes = total_gain * taxes_percentage / 100
+        final_gain = total_gain - total_taxes
 
         context = {
             'crypto_currencies': crypto_currencies,
             'total_spent': total_spent,
             'total_gain': total_gain,
             'total': total,
+            'total_taxes': total_taxes,
+            'final_gain': final_gain,
+            'taxes_percentage': taxes_percentage,
         }
 
         return render(request, self.template_name, context)
