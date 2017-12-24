@@ -1,0 +1,135 @@
+<style type="text/css">
+    * {
+        box-sizing: border-box;
+        font-family: "Open Sans", "Lucida Grande", Verdana, Arial, sans-serif;
+    }
+
+    html,
+    body {
+        background-color: #F6F7FA;
+        margin: 0;
+        min-height: 100vh;
+        padding: 0;
+    }
+
+    .app {
+        height: 100vh;
+    }
+
+    .sidebar {
+        background-color: #985CFB;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .content {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .header {
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        font-size: 2rem;
+        font-weight: 400;
+        margin: 1rem 0 2rem;
+        padding: 1rem 0;
+    }
+
+    .header .title {
+        font-size: 1em;
+        margin: 0 1em 0 0;
+    }
+
+    .header-stats {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        font-size: 1rem;
+    }
+
+    .header-stat {
+        margin-left: 1em;
+        padding: .5rem 1.5rem;
+    }
+
+    .header-stat-data {
+        font-weight: 700;
+    }
+
+    .box {
+        background-color: #fff;
+    }
+
+    .table-responsive {
+        overflow-x: scroll;
+    }
+
+    .table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table>thead>tr>th {
+        vertical-align: bottom;
+        border-bottom: 1px solid #eee;
+        text-transform: uppercase;
+        background-color: #F6F7FA;
+        color: #888;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .table>thead:first-child>tr:first-child>td,
+    .table>thead:first-child>tr:first-child>th {
+        border-top: 0;
+    }
+
+    .table>tbody>tr>td,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>td,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>thead>tr>th {
+        padding: 2rem 1.5rem;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #eee;
+    }
+
+
+    .table>thead>tr>td,
+    .table>thead>tr>th {
+        padding: 1rem 1.5rem;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    .table-striped>tbody>tr:nth-of-type(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .green {
+        color: #21ba45 !important;
+    }
+
+    .red {
+        color: #db2828 !important;
+    }
+
+    @media (min-width: 1000px) {
+        .content {
+            margin-left: 60px;
+            margin-right: 60px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+    }
+</style>

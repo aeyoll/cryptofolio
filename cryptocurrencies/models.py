@@ -11,10 +11,16 @@ class CryptoCurrency(models.Model):
     def total(self):
         return self.balance * self.price
 
-
     def gain(self):
         return (self.balance * self.price) - self.spent
 
+    def gain_percentage(self):
+        gain_percentage = 100
+
+        if float(self.spent) > 0:
+            gain_percentage = float(self.gain()) / float(self.spent) * 100
+
+        return gain_percentage
 
     def __str__(self):
         return self.name
