@@ -15,7 +15,7 @@ class IndexView(View):
         total_gain = 0
         total = 0
         total_gain_percentage = 0
-        taxes_percentage = 30
+        taxes_percentage = 19
 
         for crypto_currency in crypto_currencies:
             total_spent += crypto_currency.spent
