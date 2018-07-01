@@ -21,11 +21,10 @@ class IndexView(View):
             total_spent += crypto_currency.spent
             total_gain += crypto_currency.gain()
             total += crypto_currency.total()
-            total_gain_percentage += crypto_currency.gain_percentage()
 
         total_taxes = total_gain * taxes_percentage / 100
         final_gain = total_gain - total_taxes
-        total_gain_percentage = total_gain_percentage / crypto_currencies.__len__()
+        total_gain_percentage = 100 * total_gain / total_spent
 
         context = {
             'crypto_currencies': crypto_currencies,
