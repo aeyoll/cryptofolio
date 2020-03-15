@@ -1,5 +1,6 @@
 from django.db import models
 from djmoney.models.fields import MoneyField
+from djmoney.money import Money
 
 
 class CryptoCurrency(models.Model):
@@ -16,9 +17,10 @@ class CryptoCurrency(models.Model):
 
     def gain_percentage(self):
         gain_percentage = 100
+        zero = Money(0, 'EUR')
 
-        if float(self.spent) > 0:
-            gain_percentage = float(self.gain()) / float(self.spent) * 100
+        if self.spent > zero:
+            gain_percentage = self.gain() / self.spent * 100
 
         return gain_percentage
 
