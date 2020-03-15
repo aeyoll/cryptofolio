@@ -104,3 +104,12 @@ LOGIN_URL = '/admin/login/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+# Coinbase
+COINBASE_API_KEY = ''
+
+# Import local settings
+try:
+    from .local_settings import *
+except ImportError:
+    pass

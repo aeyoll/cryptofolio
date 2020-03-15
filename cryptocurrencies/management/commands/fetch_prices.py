@@ -1,23 +1,42 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.conf import settings
 from cryptocurrencies.models import CryptoCurrency
 from requests.exceptions import RequestException
-import requests
+from requests import Request, Session
+from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
+import json
 
 
 class Command(BaseCommand):
     help = 'Fetch prices from coinmarketcap'
 
     def handle(self, *args, **options):
-        crypto_currencies = CryptoCurrency.objects.all()
-        coinbase_api = 'https://api.coinmarketcap.com/v1/ticker/%s/?convert=EUR'
 
-        for crypto_currency in crypto_currencies:
-            try:
-                results = requests.get(coinbase_api % crypto_currency.name)
-                results_json = results.json()
-                price = results_json[0]['price_eur']
-                crypto_currency.price = price
-                crypto_currency.save()
-                self.stdout.write(self.style.SUCCESS('Successfully fetch price for "%s"' % crypto_currency.name))
-            except RequestException:
-                raise CommandError('Poll "%s" does not exist' % poll_id)
+        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+
+        headers = {
+          'Accepts': 'application/json',
+          'X-CMC_PRO_API_KEY': settings.COINBASE_API_KEY,
+        }
+
+        session = Session()
+        session.headers.update(headers)
+        
+        parameters = {
+          'convert': 'EUR',
+        }
+        
+        try:
+            response = session.get(url, params=parameters)
+            data = json.loads(response.text)
+            
+            for d in data['data']:
+                crypto_currency = CryptoCurrency.objects.filter(name=d['name'].lower()).first()
+
+                if crypto_currency:
+                    price = d['quote']['EUR']['price']
+                    crypto_currency.price = price
+                    crypto_currency.save()
+                    self.stdout.write(self.style.SUCCESS('Successfully fetch price for "%s"' % crypto_currency.name))
+        except (ConnectionError, Timeout, TooManyRedirects) as e:
+            print(e)

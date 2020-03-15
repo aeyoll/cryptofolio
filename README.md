@@ -13,6 +13,12 @@ pipenv install
 
 ## Setup
 
+In `cryptofolio/local_settings.py`, add your coinbase API key :
+
+```
+COINBASE_API_KEY='aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'
+```
+
 To fetch prices, set up a cron to an interval of your choice, launching this
 command:
 
