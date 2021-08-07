@@ -1,29 +1,30 @@
-from django.core.management.base import BaseCommand, CommandError
-from django.conf import settings
-from cryptocurrencies.models import CryptoCurrency
-from requests.exceptions import RequestException
-from requests import Request, Session
-from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
+
+from django.conf import settings
+from django.core.management.base import BaseCommand
+from requests import Session
+from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
+
+from cryptocurrencies.models import CryptoCurrency
 
 
 class Command(BaseCommand):
     help = 'Fetch prices from coinmarketcap'
 
     def handle(self, *args, **options):
-
         url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
 
         headers = {
-          'Accepts': 'application/json',
-          'X-CMC_PRO_API_KEY': settings.COINBASE_API_KEY,
+            'Accepts': 'application/json',
+            'X-CMC_PRO_API_KEY': settings.COINBASE_API_KEY,
         }
 
         session = Session()
         session.headers.update(headers)
         
         parameters = {
-          'convert': 'EUR',
+            'convert': 'EUR',
+            'limit': 200,
         }
         
         try:
