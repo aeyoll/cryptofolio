@@ -16,7 +16,7 @@ class Command(BaseCommand):
 
         headers = {
             'Accepts': 'application/json',
-            'X-CMC_PRO_API_KEY': settings.COINBASE_API_KEY,
+            'X-CMC_PRO_API_KEY': settings.COINMARKETCAP_API_KEY,
         }
 
         session = Session()

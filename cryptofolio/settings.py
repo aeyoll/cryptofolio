@@ -107,8 +107,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-# Coinbase
-COINBASE_API_KEY = ''
+# Coinmarketcap
+COINMARKETCAP_API_KEY = ''
 
 # Import local settings
 try:
